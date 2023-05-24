@@ -2,7 +2,7 @@
 <center>Product Based | AdvenTour</center>
 
 | No  |  ID Student   |      Name Student            |       Path         |
-|:---:|:-------------:|:----------------------------:|:------------------:|
+|:---:|:--------------|:-----------------------------|:-------------------|
 |  1  |  M172DSX2178  |  Erlan Herlangga             | Machine Learning   |
 |  2  |  M287DKY4820  |  Nuri Fathriya Mardlatillah  | Machine Learning   |
 |  3  |  M210DSY2838  |  Dhea Ulhaq Haryani Putri    | Machine Learning   |
