@@ -1,0 +1,3 @@
+git remote add origin https://github.com/mubasyir19/Capstone-C23-PR591
+
+ini adalah Mahdy Mubasyir
