@@ -1,5 +1,5 @@
-# <center>Capstone Project | C23-PR591</center>
-<center>Product Based | AdvenTour</center>
+# Capstone Project | C23-PR591 
+## Product Based | AdvenTour 
 
 | No  |  ID Student   |      Name Student            |       Path         |
 |:---:|:--------------|:-----------------------------|:-------------------|
