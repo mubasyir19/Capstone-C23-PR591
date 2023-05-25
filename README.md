@@ -1,4 +1,5 @@
-<img src="https://photos.google.com/photo/AF1QipM9TRYxwuz-ziAzzWa-Tn6mho3BejjYBkM7KvIA" alt="Deskripsi Gambar" width="300" height="200">
+![Deskripsi Gambar](https://ibb.co/L0cwRfF)
+
 # Capstone Project | C23-PR591 
 ## Product Based | AdvenTour 
 
