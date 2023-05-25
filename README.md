@@ -1,4 +1,4 @@
-![Deskripsi Gambar](/bangkit.jpeg)
+![Capstone - Bangkit](/bangkit.png)
 
 # Capstone Project | C23-PR591 
 ## Product Based | AdvenTour 
