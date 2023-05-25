@@ -1,4 +1,4 @@
-![Deskripsi Gambar](https://ibb.co/L0cwRfF)
+![Deskripsi Gambar](/bangkit.jpeg)
 
 # Capstone Project | C23-PR591 
 ## Product Based | AdvenTour 
