@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { signup, signin } = require('../app/api/auth/controller');
 const { getAllGunung, searchGunung, getGunungById, addDataGunung } = require('../app/api/gunung/controller');
-const { userRating } = require('../app/api/user/controller');
+const { userFeedback } = require('../app/api/user/controller');
 const { auth } = require('../middleware/auth');
 
 /* GET home page. */
@@ -18,6 +18,6 @@ router.get('/gunung/search', searchGunung);
 router.post('/gunung/add', addDataGunung);
 
 // Rating
-router.post('/rating', auth, userRating);
+router.post('/feedback', auth, userFeedback);
 
 module.exports = router;
