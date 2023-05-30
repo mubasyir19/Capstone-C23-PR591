@@ -4,6 +4,7 @@ const { signup, signin } = require('../app/api/auth/controller');
 const { getAllGunung, searchGunung, getGunungById, addDataGunung } = require('../app/api/gunung/controller');
 const { userFeedback } = require('../app/api/user/controller');
 const { auth } = require('../middleware/auth');
+const { getAllStory, getStoryById, addDataStory } = require('../app/api/story/controller');
 
 /* GET home page. */
 
@@ -19,5 +20,10 @@ router.post('/gunung/add', addDataGunung);
 
 // Rating
 router.post('/feedback', auth, userFeedback);
+
+// Story
+router.get('/story', getAllStory);
+router.get('/story/:id', getStoryById);
+router.post('/story/add', addDataStory);
 
 module.exports = router;
