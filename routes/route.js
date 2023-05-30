@@ -24,6 +24,6 @@ router.post('/rating', auth, userRating);
 // Story
 router.get('/story', getAllStory);
 router.get('/story/:id', getStoryById);
-router.post('/stor/add', addDataStory);
+router.post('/story/add', addDataStory);
 
 module.exports = router;

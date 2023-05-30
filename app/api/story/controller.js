@@ -1,4 +1,6 @@
-const { Gunung } = require("../../db/models");
+const { Gunung } = require('../../db/models');
+const { Story } = require('../../db/models');
+const { user } = require('../../db/models')
 
 module.exports = {
   getAllStory: async (req, res, next) => {
@@ -29,10 +31,14 @@ module.exports = {
   },
   addDataStory: async (req, res) => {
     try {
-      const { nama, deskripsi, photoUrl, CreatedAt, lokasi } = req.body;
+      const { user, caption, photoUrl, gunungId } = req.body;
 
-      const story = await Story.create({ nama, deskripsi, photoUrl, CreatedAt, lokasi });
-
+      const story = await Post.create({
+        user: req.user.id,
+        caption,
+        photoUrl,
+        gunungId,
+      });
       res.status(201).json({
         message: 'Berhasil menambahkan Story',
         data: story,
