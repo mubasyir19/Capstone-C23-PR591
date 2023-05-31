@@ -5,6 +5,7 @@ const { getAllGunung, searchGunung, getGunungById, addDataGunung } = require('..
 const { userFeedback } = require('../app/api/user/controller');
 const { auth } = require('../middleware/auth');
 const { getAllStory, getStoryById, addDataStory } = require('../app/api/story/controller');
+const { uploadSingle } = require('../middleware/multer');
 
 /* GET home page. */
 
@@ -22,8 +23,8 @@ router.post('/gunung/add', addDataGunung);
 router.post('/feedback', auth, userFeedback);
 
 // Story
-router.get('/story', getAllStory);
+router.get('/story', auth, getAllStory);
 router.get('/story/:id', getStoryById);
-router.post('/story/add', addDataStory);
+router.post('/story/add', auth, uploadSingle, addDataStory);
 
 module.exports = router;

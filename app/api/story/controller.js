@@ -1,14 +1,16 @@
-const { Gunung } = require('../../db/models');
-const { Story } = require('../../db/models');
-const { user } = require('../../db/models')
+const { Gunung, Story } = require('../../db/models');
 
 module.exports = {
   getAllStory: async (req, res, next) => {
     try {
-      const story = await Story.findAll();
+      const story = await Story.findAll({
+        where: {
+          user: req.user.id,
+        },
+      });
 
       res.status(200).json({
-        message: "Success get All Story",
+        message: 'Success get All My Story',
         data: story,
       });
     } catch (error) {
@@ -22,7 +24,7 @@ module.exports = {
       const story = await Story.findOne({ where: { id } });
 
       res.status(200).json({
-        message: "Success get data",
+        message: 'Success get this story',
         data: story,
       });
     } catch (error) {
@@ -31,17 +33,21 @@ module.exports = {
   },
   addDataStory: async (req, res) => {
     try {
-      const { user, caption, photoUrl, gunungId } = req.body;
+      const { caption, gunungId } = req.body;
 
-      const story = await Post.create({
+      const story = await Story.create({
         user: req.user.id,
         caption,
-        photoUrl,
+        photoUrl: `images/${req.file.filename}`,
         gunungId,
-      });
+      });
+
+      const gunung = await Gunung.findByPk(gunungId);
+
       res.status(201).json({
         message: 'Berhasil menambahkan Story',
         data: story,
+        lokasi: gunung.lokasi,
       });
     } catch (error) {
       console.log(error);
