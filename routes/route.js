@@ -7,8 +7,6 @@ const { auth } = require('../middleware/auth');
 const { getAllStory, getStoryById, addDataStory } = require('../app/api/story/controller');
 const { uploadSingle } = require('../middleware/multer');
 
-/* GET home page. */
-
 // User
 router.post('/auth/signup', signup);
 router.post('/auth/signin', signin);

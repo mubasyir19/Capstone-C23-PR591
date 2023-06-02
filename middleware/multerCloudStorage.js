@@ -4,10 +4,11 @@ const multer = require('multer');
 const cloudStorage = multerCloudStorage({
   cloudStorage: {
     // Konfigurasi penyimpanan awan Anda (misal: Google Cloud Storage)
-    projectId: 'your-project-id',
+    projectId: process.env.PROJECTID,
     keyFilename: '/path/to/service-account-key.json',
-    bucket: 'your-bucket-name',
+    bucket: process.env.BUCKET_NAME,
   },
+  destination: 'adventour-storage/img-story',
   filename: (req, file, cb) => {
     // Callback untuk menentukan nama file yang akan disimpan
     cb(null, Date.now() + '-' + file.originalname);
