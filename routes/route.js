@@ -6,6 +6,7 @@ const { userFeedback } = require('../app/api/user/controller');
 const { auth } = require('../middleware/auth');
 const { getAllStory, getStoryById, addDataStory } = require('../app/api/story/controller');
 const { uploadSingle } = require('../middleware/multer');
+const uploadHandler = require('../middleware/multer-google-storage');
 
 /* GET home page. */
 
@@ -25,6 +26,6 @@ router.post('/feedback', auth, userFeedback);
 // Story
 router.get('/story', auth, getAllStory);
 router.get('/story/:id', getStoryById);
-router.post('/story/add', auth, uploadSingle, addDataStory);
+router.post('/story/add', uploadHandler.single('photoUrl'), addDataStory);
 
 module.exports = router;
