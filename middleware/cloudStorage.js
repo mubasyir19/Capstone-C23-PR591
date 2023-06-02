@@ -10,6 +10,7 @@ const storage = new Storage({
 
 const multerGoogleStorage = multer({
   storage: multer.memoryStorage(),
+  dest: 'adventour-storage/img-story/',
   limits: {
     fileSize: 5 * 1024 * 1024, // 5 MB
   },
@@ -24,9 +25,12 @@ function uploadFile(req, res) {
 
     const bucketName = 'adventour-storage';
     const bucket = storage.bucket(bucketName);
+    // const destination = 'img-story';
     const file = req.file;
+    const folderName = 'img-story';
+    const destination = `${folderName}/${file.originalname}`;
 
-    const blob = bucket.file(file.originalname);
+    const blob = bucket.file(destination);
 
     const blobStream = blob.createWriteStream({
       resumable: false,
@@ -41,7 +45,7 @@ function uploadFile(req, res) {
     });
 
     blobStream.on('finish', () => {
-      const publicUrl = `https://storage.googleapis.com/${bucket.name}/${blob.name}`;
+      const publicUrl = `https://storage.googleapis.com/${bucket.name}/${destination}/${blob.name}`;
       return res.status(200).json({ url: publicUrl });
     });
 
