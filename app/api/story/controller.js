@@ -35,22 +35,25 @@ module.exports = {
     try {
       const { caption, gunungId } = req.body;
 
+      // console.log('File => ', req.file);
       const story = await Story.create({
-        user: req.user.id,
+        // user: req.user.id,
         caption,
-        photoUrl: `images/${req.file.filename}`,
+        // photoUrl: `images/${req.file.filename}`,
+        photoUrl,
         gunungId,
       });
 
-      const gunung = await Gunung.findByPk(gunungId);
+      // const gunung = await Gunung.findByPk(gunungId);
 
       res.status(201).json({
         message: 'Berhasil menambahkan Story',
         data: story,
-        lokasi: gunung.lokasi,
+        // lokasi: gunung.lokasi,
       });
     } catch (error) {
       console.log(error);
+      res.status(500).send('Terjadi kesalahan saat menyimpan file');
     }
   },
   getDataLocationGunung: async (req, res) => {
