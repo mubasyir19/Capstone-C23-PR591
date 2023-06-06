@@ -1,4 +1,4 @@
-const { User } = require('../../db/models');
+const { user } = require('../../db/models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -11,12 +11,12 @@ module.exports = {
         res.status(403).json({ message: "Password and confirm password doesn't match" });
       }
 
-      const checkEmail = await User.findOne({ where: { email: email } });
+      const checkEmail = await user.findOne({ where: { email: email } });
       if (checkEmail) {
         return res.status(403).json({ message: 'Email Registered' });
       }
 
-      const user = await User.create({
+      const User = await user.create({
         nama,
         jenisKelamin,
         umur,
@@ -27,11 +27,11 @@ module.exports = {
       });
       //   console.log(user);
 
-      delete user.dataValues.password;
+      delete User.dataValues.password;
 
       res.status(201).json({
         message: 'Success SignUp',
-        data: user,
+        data: User,
       });
     } catch (error) {
       next(error);
@@ -40,7 +40,7 @@ module.exports = {
   signin: async (req, res, next) => {
     try {
       const { email, password } = req.body;
-      const checkUser = await User.findOne({ where: { email: email } });
+      const checkUser = await user.findOne({ where: { email: email } });
       //   Cek email apakah email yang dimasukkan sama dengan yang ada di database
       if (checkUser) {
         const checkPassword = bcrypt.compareSync(password, checkUser.password);

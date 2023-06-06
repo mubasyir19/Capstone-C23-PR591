@@ -1,9 +1,9 @@
-const { Gunung, Story } = require('../../db/models');
+const { gunung, story } = require('../../db/models');
 
 module.exports = {
   getAllStory: async (req, res, next) => {
     try {
-      const story = await Story.findAll({
+      const Story = await story.findAll({
         where: {
           user: req.user.id,
         },
@@ -11,7 +11,7 @@ module.exports = {
 
       res.status(200).json({
         message: 'Success get All My Story',
-        data: story,
+        data: Story,
       });
     } catch (error) {
       next(error);
@@ -21,11 +21,11 @@ module.exports = {
     try {
       const { id } = req.params;
 
-      const story = await Story.findOne({ where: { id } });
+      const Story = await story.findOne({ where: { id } });
 
       res.status(200).json({
         message: 'Success get this story',
-        data: story,
+        data: Story,
       });
     } catch (error) {
       next(error);
@@ -36,7 +36,7 @@ module.exports = {
       const { caption, gunungId } = req.body;
 
       // console.log('File => ', req.file);
-      const story = await Story.create({
+      const Story = await story.create({
         // user: req.user.id,
         caption,
         // photoUrl: `images/${req.file.filename}`,
@@ -48,7 +48,7 @@ module.exports = {
 
       res.status(201).json({
         message: 'Berhasil menambahkan Story',
-        data: story,
+        data: Story,
         // lokasi: gunung.lokasi,
       });
     } catch (error) {
@@ -58,13 +58,13 @@ module.exports = {
   },
   getDataLocationGunung: async (req, res) => {
     try {
-      const gunung = await Gunung.findAll({
+      const Gunung = await gunung.findAll({
         attributes: ['nama', 'lokasi'],
       });
 
       res.status(200).json({
         message: 'Success get Data Name and Location',
-        data: gunung,
+        data: Gunung,
       });
     } catch (error) {
       console.log(error);
