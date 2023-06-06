@@ -1,11 +1,11 @@
-const { User, Gunung, Feedback } = require('../../db/models');
+const { user, gunung, feedback } = require('../../db/models');
 
 module.exports = {
   userFeedback: async (req, res, next) => {
     try {
       const { gunungId, rating, review } = req.body;
 
-      const rate = await Feedback.create({
+      const Rate = await feedback.create({
         rating,
         review,
         gunungId,
@@ -15,7 +15,7 @@ module.exports = {
 
       res.status(201).json({
         message: 'Feedback berhasil ditambahkan',
-        data: rate,
+        data: Rate,
       });
     } catch (error) {
       console.log(error);

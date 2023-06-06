@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     simaksi: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'Gunung',
+    modelName: 'gunung',
   });
   return Gunung;
 };
