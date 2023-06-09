@@ -22,4 +22,28 @@ module.exports = {
       res.status(500).json({ message: 'Terjadi kesalahan pada server' });
     }
   },
+  getAllFeedback: async (req, res) => {
+    try {
+      const result = await feedback.findAll({
+        include: [
+          {
+            model: gunung,
+            attributes: ['id', 'nama', 'ketinggian', 'lokasi', 'trek'],
+          },
+          {
+            model: user,
+            attributes: ['id', 'nama', 'domisili'],
+          },
+        ],
+      });
+
+      res.status(200).json({
+        nessage: 'Success gett all feedback',
+        data: result,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ message: 'Terjadi kesalahan pada server' });
+    }
+  },
 };
