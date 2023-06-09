@@ -10,7 +10,7 @@ const {
   getGunungJawaTengah,
   getGunungJawaTimur,
 } = require('../app/api/gunung/controller');
-const { userFeedback, getAllFeedBasedOnGunung } = require('../app/api/user/controller');
+const { userFeedback, getAllFeedBasedOnGunung } = require('../app/api/feedback/controller');
 const { auth } = require('../middleware/auth');
 const { getAllStory, getStoryById, addDataStory } = require('../app/api/story/controller');
 const { uploadFile } = require('../middleware/cloudStorage');
