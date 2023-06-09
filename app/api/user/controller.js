@@ -18,7 +18,7 @@ module.exports = {
         data: Rate,
       });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       res.status(500).json({ message: 'Terjadi kesalahan pada server' });
     }
   },
@@ -42,7 +42,7 @@ module.exports = {
         data: result,
       });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       res.status(500).json({ message: 'Terjadi kesalahan pada server' });
     }
   },
@@ -54,6 +54,11 @@ module.exports = {
         include: [
           {
             model: gunung,
+            attributes: ['id', 'nama', 'ketinggian', 'lokasi', 'trek'],
+          },
+          {
+            model: user,
+            attributes: ['id', 'nama', 'domisili'],
           },
         ],
       });
