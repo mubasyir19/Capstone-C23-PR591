@@ -15,6 +15,57 @@ module.exports = {
       console.log(error);
     }
   },
+  getGunungJawaBarat: async (req, res) => {
+    try {
+      const result = await gunung.findAll({
+        where: {
+          daerah: 'Jawa Barat',
+        },
+      });
+
+      res.status(200).json({
+        message: 'Data gunung Jawa Barat',
+        data: result,
+      });
+    } catch (error) {
+      // next(error);
+      console.log(error);
+    }
+  },
+  getGunungJawaTengah: async (req, res) => {
+    try {
+      const result = await gunung.findAll({
+        where: {
+          daerah: 'Jawa Tengah',
+        },
+      });
+
+      res.status(200).json({
+        message: 'Data gunung Jawa Tengah',
+        data: result,
+      });
+    } catch (error) {
+      // next(error);
+      console.log(error);
+    }
+  },
+  getGunungJawaTimur: async (req, res) => {
+    try {
+      const result = await gunung.findAll({
+        where: {
+          daerah: 'Jawa Timur',
+        },
+      });
+
+      res.status(200).json({
+        message: 'Data gunung Jawa Timur',
+        data: result,
+      });
+    } catch (error) {
+      // next(error);
+      console.log(error);
+    }
+  },
   getGunungById: async (req, res, next) => {
     try {
       const { id } = req.params;

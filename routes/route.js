@@ -1,7 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const { signup, signin } = require('../app/api/auth/controller');
-const { getAllGunung, searchGunung, getGunungById, addDataGunung } = require('../app/api/gunung/controller');
+const {
+  getAllGunung,
+  searchGunung,
+  getGunungById,
+  addDataGunung,
+  getGunungJawaBarat,
+  getGunungJawaTengah,
+  getGunungJawaTimur,
+} = require('../app/api/gunung/controller');
 const { userFeedback, getAllFeedBasedOnGunung } = require('../app/api/user/controller');
 const { auth } = require('../middleware/auth');
 const { getAllStory, getStoryById, addDataStory } = require('../app/api/story/controller');
@@ -14,6 +22,9 @@ router.post('/auth/signin', signin);
 
 // Gunung
 router.get('/gunung', getAllGunung);
+router.get('/gunung/jawa-barat', getGunungJawaBarat);
+router.get('/gunung/jawa-tengah', getGunungJawaTengah);
+router.get('/gunung/jawa-timur', getGunungJawaTimur);
 router.get('/gunung/:id', getGunungById);
 router.get('/gunung/search', searchGunung);
 router.post('/gunung/add', addDataGunung);
