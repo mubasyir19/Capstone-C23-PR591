@@ -49,7 +49,7 @@ module.exports = {
   getAllFeedBasedOnGunung: async (req, res) => {
     const { gunungId } = req.params;
     try {
-      const result = await rating.findAll({
+      const result = await feedback.findAll({
         where: { gunungId },
         include: [
           {
