@@ -46,4 +46,24 @@ module.exports = {
       res.status(500).json({ message: 'Terjadi kesalahan pada server' });
     }
   },
+  getAllFeedBasedOnGunung: async (req, res) => {
+    const { gunungId } = req.params;
+    try {
+      const result = await rating.findAll({
+        where: { gunungId },
+        include: [
+          {
+            model: gunung,
+          },
+        ],
+      });
+
+      res.status(200).json({
+        message: 'success get based on Gunung Id',
+        data: result,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };

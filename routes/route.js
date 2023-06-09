@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { signup, signin } = require('../app/api/auth/controller');
 const { getAllGunung, searchGunung, getGunungById, addDataGunung } = require('../app/api/gunung/controller');
-const { userFeedback } = require('../app/api/user/controller');
+const { userFeedback, getAllFeedBasedOnGunung } = require('../app/api/user/controller');
 const { auth } = require('../middleware/auth');
 const { getAllStory, getStoryById, addDataStory } = require('../app/api/story/controller');
 const { uploadFile } = require('../middleware/cloudStorage');
@@ -20,6 +20,7 @@ router.post('/gunung/add', addDataGunung);
 
 // Rating
 router.post('/feedback', auth, userFeedback);
+router.get('/feedback/:gunungId', getAllFeedBasedOnGunung);
 
 // Story
 router.get('/story', auth, getAllStory);
