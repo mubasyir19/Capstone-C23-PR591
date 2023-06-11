@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       jalur: DataTypes.STRING,
       simaksi: DataTypes.INTEGER,
       level: DataTypes.INTEGER,
+      rating: DataTypes.FLOAT,
       imageUrl: DataTypes.STRING,
     },
     {

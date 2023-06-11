@@ -33,6 +33,9 @@ module.exports = {
       level: {
         type: Sequelize.INTEGER,
       },
+      rating: {
+        type: Sequelize.FLOAT,
+      },
       imageUrl: {
         type: Sequelize.STRING,
       },
