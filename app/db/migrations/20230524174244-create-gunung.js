@@ -7,40 +7,46 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       daerah: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       nama: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       ketinggian: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       lokasi: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       trek: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       jalur: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       simaksi: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+      },
+      level: {
+        type: Sequelize.INTEGER,
+      },
+      imageUrl: {
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Gunungs');
-  }
+  },
 };
