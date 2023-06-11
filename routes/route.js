@@ -10,7 +10,7 @@ const {
   getGunungJawaTengah,
   getGunungJawaTimur,
 } = require('../app/api/gunung/controller');
-const { userFeedback, getAllFeedBasedOnGunung } = require('../app/api/feedback/controller');
+const { userFeedback, getAllFeedBasedOnGunung, getAllFeedback } = require('../app/api/feedback/controller');
 const { auth } = require('../middleware/auth');
 const { getAllStory, getStoryById, addDataStory } = require('../app/api/story/controller');
 const { uploadFile } = require('../middleware/cloudStorage');
@@ -31,6 +31,7 @@ router.post('/gunung/add', addDataGunung);
 
 // Rating
 router.post('/feedback', auth, userFeedback);
+router.get('/feedback', getAllFeedback);
 router.get('/feedback/:gunungId', getAllFeedBasedOnGunung);
 
 // Story

@@ -9,7 +9,7 @@ module.exports = {
         rating,
         review,
         gunungId,
-        user: req.user.id,
+        userId: req.user.id,
       });
       // console.log(req.user.id);
 
