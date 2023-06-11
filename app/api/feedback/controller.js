@@ -28,7 +28,18 @@ module.exports = {
         include: [
           {
             model: gunung,
-            attributes: ['id', 'nama', 'ketinggian', 'lokasi', 'trek'],
+            attributes: [
+              'id',
+              'nama',
+              'ketinggian',
+              'lokasi',
+              'trek',
+              'jalur',
+              'simaksi',
+              'level',
+              'rating',
+              'imageUrl',
+            ],
           },
           {
             model: user,
@@ -54,7 +65,18 @@ module.exports = {
         include: [
           {
             model: gunung,
-            attributes: ['id', 'nama', 'ketinggian', 'lokasi', 'trek'],
+            attributes: [
+              'id',
+              'nama',
+              'ketinggian',
+              'lokasi',
+              'trek',
+              'jalur',
+              'simaksi',
+              'level',
+              'rating',
+              'imageUrl',
+            ],
           },
           {
             model: user,
