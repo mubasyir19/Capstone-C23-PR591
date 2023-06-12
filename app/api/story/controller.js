@@ -52,10 +52,12 @@ module.exports = {
       const file = req.file;
 
       // Buat nama file yang unik
-      const fileName = `${Date.now()}-${file.originalname}`;
+      // const fileName = `${Date.now()}-${file.originalname}`;
 
-      // Upload file ke Cloud Storage
-      const blob = bucket.file(fileName);
+      // Upload file ke Cloud Storage      
+      const destination = `${folderName}/${Date.now()}-${file.originalname}`;
+      const blob = bucket.file(destination);
+
       const blobStream = blob.createWriteStream();
       blobStream.on('error', (error) => {
         console.error(error);
@@ -67,7 +69,7 @@ module.exports = {
           userId: req.user.id,
           caption,
           gunungId,
-          photoUrl: `https://storage.googleapis.com/${bucketName}/${folderName}/${fileName}`,
+          photoUrl: `https://storage.googleapis.com/${bucketName}/${folderName}/${destination}`,
         });
 
         res.status(201).json({

@@ -1,9 +1,9 @@
 {
   "development": {
     "username": "root",
-    "password": "admin123",
+    "password": null,
     "database": "db_adventour",
-    "host": "34.101.151.99",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
