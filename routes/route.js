@@ -12,9 +12,16 @@ const {
 } = require('../app/api/gunung/controller');
 const { userFeedback, getAllFeedBasedOnGunung, getAllFeedback } = require('../app/api/feedback/controller');
 const { auth } = require('../middleware/auth');
-const { getAllStory, getStoryById, addDataStory } = require('../app/api/story/controller');
+const { getAllStory, getStoryById, addNewStory } = require('../app/api/story/controller');
 const { uploadFile } = require('../middleware/cloudStorage');
-// const { uploadSingle } = require('../middleware/multer');
+
+const multer = require('multer');
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: {
+    fileSize: 5 * 1024 * 1024, // Batasan ukuran file 5 MB
+  },
+});
 
 // User
 router.post('/auth/signup', signup);
@@ -37,6 +44,6 @@ router.get('/feedback/:gunungId', getAllFeedBasedOnGunung);
 // Story
 router.get('/story', auth, getAllStory);
 router.get('/story/:id', getStoryById);
-router.post('/story/add', uploadFile, addDataStory);
+router.post('/story/add', auth, upload.single('photoUrl'), addNewStory);
 
 module.exports = router;

@@ -1,4 +1,18 @@
 const { gunung, story } = require('../../db/models');
+const { Storage } = require('@google-cloud/storage');
+const path = require('path');
+const serviceKey = path.join(
+  __dirname,
+  '../../../middleware/service-account-key/capstone-project-387109-5e2aadb14f5e.json'
+);
+
+const storage = new Storage({
+  projectId: 'capstone-project-387109',
+  keyFilename: serviceKey,
+});
+const bucketName = 'adventour-storage';
+const bucket = storage.bucket(bucketName);
+const folderName = 'img-story'; //nama-folder
 
 module.exports = {
   getAllStory: async (req, res, next) => {
@@ -31,29 +45,40 @@ module.exports = {
       next(error);
     }
   },
-  addDataStory: async (req, res) => {
+  addNewStory: async (req, res) => {
     try {
       const { caption, gunungId } = req.body;
 
-      // console.log('File => ', req.file);
-      const Story = await story.create({
-        // user: req.user.id,
-        caption,
-        // photoUrl: `images/${req.file.filename}`,
-        photoUrl,
-        gunungId,
-      });
+      const file = req.file;
 
-      // const gunung = await Gunung.findByPk(gunungId);
+      // Buat nama file yang unik
+      const fileName = `${Date.now()}-${file.originalname}`;
 
-      res.status(201).json({
-        message: 'Berhasil menambahkan Story',
-        data: Story,
-        // lokasi: gunung.lokasi,
+      // Upload file ke Cloud Storage
+      const blob = bucket.file(fileName);
+      const blobStream = blob.createWriteStream();
+      blobStream.on('error', (error) => {
+        console.error(error);
+        res.status(500).json({ message: 'Failed to upload image' });
       });
+      blobStream.on('finish', async () => {
+        // Simpan data posting ke database
+        const posting = await story.create({
+          userId: req.user.id,
+          caption,
+          gunungId,
+          photoUrl: `https://storage.googleapis.com/${bucketName}/${folderName}/${fileName}`,
+        });
+
+        res.status(201).json({
+          message: 'Data posting berhasil disimpan',
+          data: posting,
+        });
+      });
+      blobStream.end(file.buffer);
     } catch (error) {
-      console.log(error);
-      res.status(500).send('Terjadi kesalahan saat menyimpan file');
+      console.error(error);
+      res.status(500).json({ message: 'Server error' });
     }
   },
   getDataLocationGunung: async (req, res) => {
